@@ -38,23 +38,22 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody>
 
+      <tbody>
         <?php
         //Memanggil config.php yang sudah kita buat
         include 'config.php';
         //Membuat variabel untuk nomor mahasiswa yang kaan diincrement
         $no = 1;
         //Melakukan query
-        $mahasiswa = mysqli_query($koneksi, 'select * from mahasiswa');
-
+        $mahasiswa = mysqli_query($koneksi, "select * from mahasiswa");
         //Looping data mahasiswa yang
         while ($data = mysqli_fetch_array($mahasiswa)) {
         ?>
           <!-- Menampilkan data mahasiswa ke dalam tabel -->
           <tr>
             <!-- Increment nomor bari $no++ -->
-            <td><?php echo $data['id']; ?></td>
+            <td><?php echo $no++; ?></td>
             <td><?php echo $data['nama']; ?></td>
             <td><?php echo $data['nim']; ?></td>
             <td><?php echo $data['alamat']; ?></td>
@@ -63,7 +62,8 @@
             <td>
               <!-- Aksi Edit dan Delete, disini menggunakan btn-sm agar tombolnya kecil -->
               <!-- Link untuk masuk ke halmaan edit-->
-              <!-- edit.php?id=<?php echo $data['id']; ?> Mengirimkan id dari data mahasiswa ke halaman edit -->
+              <!-- edit.php?id=</?php echo $data['id']; ?> Mengirimkan id dari data mahasiswa ke halaman edit -->
+              <a href="detail.php?id=<?php echo $data['id']; ?>" class="btn btn-outline-success btn-sm">DETAIL</a>
               <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-outline-warning btn-sm">EDIT</a>
               <!-- Link untuk delete berdasarkan id, akan keluar confirm terlebih dahulu -->
               <a href="delete.php?id=<?php echo $data['id']; ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Confirm to Delete Data?')">DELETE</a>
